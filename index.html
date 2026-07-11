@@ -1,1 +1,750 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فال‌گیر هوشمند کهن | طلسمات & تعبیر خواب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Vazir', sans-serif;
+            background: radial-gradient(ellipse at 10% 20%, #1a142b, #0a0815);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #efe8df;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #e6c27a33, transparent),
+                radial-gradient(2px 2px at 40px 70px, #e6c27a44, transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff6, transparent),
+                radial-gradient(1px 1px at 130px 80px, #fff8, transparent),
+                radial-gradient(2px 2px at 160px 30px, #e6c27a55, transparent);
+            background-size: 200px 100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(14, 11, 27, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 80px 80px 50px 50px;
+            padding: 30px 35px 40px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(215, 180, 120, 0.15);
+            border: 1px solid rgba(215, 180, 120, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed rgba(215, 180, 120, 0.2);
+            padding-bottom: 18px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo i {
+            font-size: 3.4rem;
+            color: #f0d080;
+            filter: drop-shadow(0 0 30px #f0d08066);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 20px #f0d08044); }
+            100% { filter: drop-shadow(0 0 50px #f0d080aa); }
+        }
+
+        .logo h1 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #f7e0a0, #dbaa4a, #f7e0a0);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .badge {
+            background: rgba(34, 30, 55, 0.8);
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            border: 1px solid #f0d08055;
+            color: #f0dba8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .badge i {
+            color: #f0d080;
+            font-size: 1.1rem;
+        }
+
+        .badge .ai-status {
+            width: 8px;
+            height: 8px;
+            background: #5fda7a;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .fortune-types {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin: 22px 0 30px;
+        }
+
+        .type-btn {
+            background: rgba(215, 180, 120, 0.05);
+            border: 1px solid rgba(215, 180, 120, 0.12);
+            padding: 14px 26px;
+            border-radius: 60px;
+            color: #cdc2b2;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-family: 'Vazir', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(240, 208, 128, 0.05));
+            pointer-events: none;
+        }
+
+        .type-btn i {
+            color: #f0d080;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .type-btn:hover {
+            background: rgba(215, 180, 120, 0.12);
+            border-color: #f0d080;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(240, 208, 128, 0.15);
+        }
+
+        .type-btn.active {
+            background: linear-gradient(145deg, #f0d080, #d4a84a);
+            color: #0d0b16;
+            border-color: #f0d080;
+            box-shadow: 0 8px 35px #f0d08055;
+            transform: translateY(-2px);
+        }
+
+        .type-btn.active i {
+            color: #0d0b16;
+        }
+
+        .fortune-card {
+            background: rgba(10, 8, 22, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 55px;
+            padding: 32px 35px 38px;
+            border: 1px solid rgba(215, 180, 120, 0.06);
+            box-shadow: inset 0 2px 30px rgba(255,255,255,0.02);
+            margin: 5px 0 20px;
+            position: relative;
+        }
+
+        .fortune-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 55px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(240, 208, 128, 0.1), transparent 50%, rgba(240, 208, 128, 0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .question-area {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .question-area label {
+            font-weight: 400;
+            color: #d5ccbd;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .question-area label i {
+            color: #f0d080;
+            font-size: 1.3rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .input-group input {
+            flex: 2;
+            min-width: 200px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid #3c3f5a;
+            border-radius: 60px;
+            padding: 18px 28px;
+            font-size: 1rem;
+            color: #f0eae3;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Vazir', sans-serif;
+            box-shadow: inset 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .input-group input:focus {
+            border-color: #f0d080;
+            box-shadow: 0 0 30px #f0d08033, inset 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .input-group input::placeholder {
+            color: #6b6a7a;
+            font-weight: 300;
+        }
+
+        .btn-fortune {
+            flex: 0.6;
+            min-width: 140px;
+            background: linear-gradient(135deg, #f0d080, #c99f4a);
+            border: none;
+            border-radius: 60px;
+            padding: 18px 32px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #0d0b16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 6px 30px rgba(240, 208, 128, 0.3);
+            font-family: 'Vazir', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-fortune::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 60%, transparent 80%);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .btn-fortune:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-fortune:hover {
+            transform: scale(1.04) translateY(-3px);
+            box-shadow: 0 14px 50px rgba(240, 208, 128, 0.5);
+            background: linear-gradient(135deg, #fade8a, #d6a83a);
+        }
+
+        .btn-fortune:active {
+            transform: scale(0.95);
+        }
+
+        .result-box {
+            margin-top: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 45px;
+            padding: 30px 35px;
+            border-right: 6px solid #f0d080;
+            transition: 0.4s ease;
+            min-height: 120px;
+            position: relative;
+            box-shadow: inset 0 2px 30px rgba(0,0,0,0.3);
+        }
+
+        .result-box .fortune-text {
+            font-size: 1.35rem;
+            line-height: 2.3rem;
+            font-weight: 400;
+            color: #f5eee3;
+            white-space: pre-line;
+        }
+
+        .result-box .fortune-text i {
+            color: #f0d080;
+            margin-left: 16px;
+            font-size: 1.4rem;
+        }
+
+        .result-box .sub-meta {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #9892a8;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            border-top: 1px dashed #373b52;
+            padding-top: 18px;
+        }
+
+        .result-box .sub-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-box .sub-meta i {
+            color: #f0d080;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            padding: 25px 0;
+            font-size: 1.2rem;
+            color: #f0d080;
+        }
+
+        .loading i {
+            font-size: 2.6rem;
+            animation: spin 1.1s infinite linear;
+        }
+
+        .loading .dots span {
+            display: inline-block;
+            animation: dot-bounce 1.4s infinite;
+        }
+        .loading .dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dot-bounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.2; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .talisman-info {
+            margin: 18px 0 8px;
+            padding: 16px 24px;
+            background: rgba(240, 208, 128, 0.05);
+            border-radius: 35px;
+            border: 1px dashed rgba(240, 208, 128, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #d5ccbd;
+            transition: 0.3s;
+        }
+
+        .talisman-info i {
+            color: #f0d080;
+            font-size: 1.6rem;
+        }
+
+        .talisman-info .highlight {
+            color: #f7e0a0;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #585b73;
+            border-top: 1px solid #2a2d44;
+            padding-top: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note i {
+            color: #f0d08077;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 16px; }
+            .logo h1 { font-size: 1.5rem; }
+            .type-btn { padding: 10px 16px; font-size: 0.8rem; gap: 8px; }
+            .input-group input { min-width: 120px; padding: 14px 18px; }
+            .btn-fortune { min-width: 100px; padding: 14px 20px; font-size: 0.95rem; }
+            .result-box .fortune-text { font-size: 1.1rem; line-height: 2rem; }
+            .result-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-moon-stars"></i>
+            <h1>فال‌گیر کهن</h1>
+        </div>
+        <div class="badge">
+            <i class="fas fa-robot"></i> هوش پیشرفته 
+            <span class="ai-status"></span>
+            <span style="color:#f0d080; margin-right:4px;">v4.5</span>
+        </div>
+    </div>
+
+    <div class="fortune-types" id="fortuneTypes">
+        <button class="type-btn active" data-type="hafez"><i class="fas fa-feather-alt"></i> حافظ</button>
+        <button class="type-btn" data-type="taro"><i class="fas fa-star-of-david"></i> تاروت</button>
+        <button class="type-btn" data-type="love"><i class="fas fa-heart"></i> عشق</button>
+        <button class="type-btn" data-type="daily"><i class="fas fa-sun"></i> روزانه</button>
+        <button class="type-btn" data-type="oracle"><i class="fas fa-eye"></i> اوراکل</button>
+        <button class="type-btn" data-type="talisman"><i class="fas fa-gem"></i> طلسمات</button>
+        <button class="type-btn" data-type="dream"><i class="fas fa-cloud-moon"></i> تعبیر خواب</button>
+    </div>
+
+    <div class="fortune-card">
+        <div class="question-area">
+            <label for="questionInput"><i class="fas fa-question-circle"></i> نیت، سوال یا خواب خود را بنویسید:</label>
+            <div class="input-group">
+                <input type="text" id="questionInput" placeholder="مثلاً: خواب ازدواج دیدم، یا سوال عشقی..." />
+                <button class="btn-fortune" id="getFortuneBtn"><i class="fas fa-sparkles"></i> دریافت</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loadingIndicator">
+            <i class="fas fa-circle-notch"></i>
+            <span>هوش کهن در حال مکاشفه</span>
+            <span class="dots"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <div class="fortune-text" id="fortuneText">
+                <i class="fas fa-crystal-ball"></i> 
+                سوال یا نیت خود را مطرح کنید تا پاسخ کهن را دریافت کنید.
+            </div>
+            <div class="sub-meta" id="metaInfo">
+                <span><i class="fas fa-tag"></i> نوع: <span id="fortuneTypeLabel">فال حافظ</span></span>
+                <span><i class="fas fa-brain"></i> هوش مصنوعی آریایی</span>
+                <span><i class="fas fa-clock"></i> <span id="timeLabel">اکنون</span></span>
+            </div>
+        </div>
+
+        <div class="talisman-info" id="talismanInfo">
+            <i class="fas fa-shield-alt"></i>
+            <span id="talismanDesc">✨ هر گزینه انرژی خاص خود را دارد. انتخاب کنید.</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span><i class="fas fa-hat-wizard"></i> طلسمات کهن & تعبیر خواب</span>
+        <span><i class="fas fa-infinity"></i> رایگان و نامحدود</span>
+        <span><i class="fas fa-moon"></i> رمزآلود و پیشرفته</span>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let currentType = 'hafez';
+
+        // دیتابیس جامع تعبیر خواب بر اساس کلمات کلیدی
+        const dreamInterpretation = {
+            'ازدواج': [
+                "تعبیر خواب ازدواج: اگر خواب دیدی که ازدواج می‌کنی، نشانه شروع یک رابطه جدید یا تعهد مهم در زندگی توست. این می‌تواند به معنای پیوند با یک ایده، شغل یا شخص جدید باشد. اگر مجردی، به زودی با کسی آشنا می‌شوی که برایت مهم است.",
+                "خواب ازدواج: نشانه خوش‌یمنی و برکت است. اگر در خواب عروسی می‌دیدی، یعنی به زودی خبرهای خوب به تو می‌رسد و زندگی‌ات رنگ تازه‌ای می‌گیرد.",
+                "ازدواج در خواب: اگر احساس خوشحالی داشتی، نشانه موفقیت در کار و عشق است. اگر ناراحت بودی، ممکن است از یک تصمیم مهم بترسی، اما همه چیز به خوبی پیش می‌رود."
+            ],
+            'عروسی': [
+                "تعبیر خواب عروسی: جشن و شادی در راه است. اگر در خواب عروسی می‌دیدی، یعنی به زودی اتفاق خوشایندی در زندگی‌ات رخ می‌دهد که تو را خوشحال می‌کند.",
+                "خواب عروسی: نشانه اتحاد و هماهنگی است. ممکن است با کسی به تفاهم برسی یا پروژه‌ای را با موفقیت به پایان برسانی."
+            ],
+            'بارداری': [
+                "تعبیر خواب بارداری: اگر خواب دیدی باردار هستی، نشانه خلاقیت و تولد ایده‌های جدید است. یک پروژه یا استعداد جدید در تو شکوفا می‌شود.",
+                "خواب بارداری: اگر باردار نیستی، این خواب نشانه تغییرات بزرگ و رشد شخصی است. آماده تحول باش."
+            ],
+            'مرگ': [
+                "تعبیر خواب مرگ: خواب مرگ نشانه پایان یک مرحله و آغاز مرحله تازه‌است. ممکن است یک عادت قدیمی را ترک کنی یا رابطه‌ای به پایان برسد تا جای بهتری بیاید.",
+                "خواب مردن: اگر خواب دیدی که مردی، یعنی از چیزی رها می‌شوی و سبک می‌شوی. این نشانه تولد دوباره است."
+            ],
+            'پرواز': [
+                "تعبیر خواب پرواز: اگر در خواب پرواز می‌کردی، نشانه آزادی، موفقیت و رسیدن به آرزوهاست. از محدودیت‌ها رها می‌شوی.",
+                "خواب پرواز کردن: نشانه بالا رفتن جایگاه اجتماعی و رسیدن به اهداف بلند است."
+            ],
+            'آب': [
+                "تعبیر خواب آب: آب در خواب نشانه زندگی، پاکی و برکت است. آب زلال یعنی خبرهای خوب، آب گل‌آلود یعنی مشکلات موقت.",
+                "خواب دریا یا رودخانه: نشانه جریان زندگی است. اگر آب آرام بود، زندگی آرامی داری. اگر طوفانی بود، با چالش روبرو می‌شوی اما پیروز می‌شوی."
+            ],
+            'آتش': [
+                "تعبیر خواب آتش: آتش نشانه انرژی، عشق و گاهی خشم است. اگر آتش روشن بود، یعنی شور و اشتیاق داری. اگر آتش سوزان بود، ممکن است از چیزی عصبانی باشی.",
+                "خواب آتش سوزان: نشانه تغییرات بزرگ و پرشور. مواظب باش که احساساتت را کنترل کنی."
+            ],
+            'پرنده': [
+                "تعبیر خواب پرنده: پرنده نشانه آزادی، روح و پیام‌های آسمانی است. اگر پرنده سفید دیدی، خبر خوب می‌رسد. اگر پرنده سیاه، باید مراقب باشی.",
+                "خواب پرندگان: اگر پرندگان در حال پرواز بودند، یعنی آرزوهایت به زودی برآورده می‌شوند."
+            ],
+            'مار': [
+                "تعبیر خواب مار: مار نشانه دشمن پنهان، یا انرژی‌های منفی است. اما اگر مار را کشتی، یعنی بر مشکلات غلبه می‌کنی.",
+                "خواب مار: اگر مار سفید بود، نشانه خرد و دانش است. اگر سیاه بود، باید مراقب اطرافیانت باشی."
+            ],
+            'گل': [
+                "تعبیر خواب گل: گل نشانه عشق، زیبایی و شادی است. اگر گل سرخ دیدی، عشق در راه است. اگر گل سفید، آرامش و پاکی.",
+                "خواب گل‌های رنگارنگ: نشانه خوشبختی و روزهای خوب پیش روست."
+            ],
+            'پول': [
+                "تعبیر خواب پول: پول در خواب نشانه ارزش و اعتماد به نفس است. اگر پول پیدا کردی، یعنی به زودی به موفقیت می‌رسی.",
+                "خواب پول دادن یا گرفتن: نشانه بخشش و دریافت برکت است."
+            ],
+            'سفر': [
+                "تعبیر خواب سفر: سفر در خواب نشانه تغییر و تحول است. اگر به سفر می‌رفتی، یعنی به زودی تغییری در زندگی‌ات رخ می‌دهد.",
+                "خواب مسافرت: اگر سفر خوشایند بود، موفقیت در انتظار توست. اگر سخت بود، باید برای رسیدن به هدف تلاش کنی."
+            ]
+        };
+
+        // فال‌های معمول
+        const fortuneDB = {
+            hafez: [
+                "ای دل اگر عاشقی، ز غم فارغی؟ \nبهار عمرت خواهد رسید، صبر کن و امیدوار باش.",
+                "چون باد بهاری و چو گل بی‌خار باش، \nهرگز مکن آزرده دل یار باش، که عشق جاویدان است.",
+                "بر آستان تو جان می‌سپارم، \nکه عشق تو راهی به فردا دارد، روشن و پرنور.",
+                "دل به امید وصال تو خوش است، \nکه صبح سعادت پس از شب‌های دراز می‌آید.",
+                "غزل‌های حافظ را بخوان و از آن درس عشق بگیر، \nکه زندگی گذراست، اما عشق پایدار."
+            ],
+            taro: [
+                "ستاره‌ها می‌گویند که تغییر در راه است. \nبه شهود خود اعتماد کن و قدم بردار.",
+                "کارت امروز: خورشید. شادی و موفقیت در انتظار توست، نور را ببین.",
+                "کارت معکوس: برج. چالشی پیش روست، اما این فرصتی برای بازسازی است.",
+                "کارت عاشقان: انتخابی سرنوشت‌ساز. از دل خود بپرس، پاسخ درون توست.",
+                "کارت مرگ: پایان یک دوره و آغاز تازه‌ای. رها کن و حرکت کن."
+            ],
+            love: [
+                "عشق واقعی در نزدیکی توست، اما تو باید قدم اول را برداری، با شجاعت.",
+                "قلب تو آینه‌ست؛ هر چه بتابانی، همان بازتابد. محبت کن تا محبت ببینی.",
+                "رابطه‌ات نیاز به صبر دارد. طوفان‌ها می‌گذرند و آسمان صاف می‌شود.",
+                "کسی که به فکر توست، در سکوت منتظر نشانه‌ای از توست. پیام بده.",
+                "عشق مانند باد است، نمی‌توانی ببینی اما احساسش می‌کنی. به حس خود اعتماد کن."
+            ],
+            daily: [
+                "امروز روز خوش‌شانسی است. از هر فرصتی استفاده کن، لبخند بزن.",
+                "آسمان امروز به تو لبخند می‌زند. مثبت‌اندیش باش و انرژی بده.",
+                "چالش کوچکی پیش می‌آید، اما پیروزی از آن توست، نترس.",
+                "یک خبر خوب به زودی به تو می‌رسد. چشم‌هایت را باز نگه دار و منتظر باش.",
+                "امروز روزی است برای شروع دوباره. گذشته را رها کن و به جلو نگاه کن."
+            ],
+            oracle: [
+                "پاسخ در درون توست. به ندای باطن گوش کن، ساکت و آرام.",
+                "راه روشن است، اما عجله نکن. قدم‌های محکم و آگاهانه بردار.",
+                "با یک دوست قدیمی ارتباط بگیر؛ این ملاقات سرنوشت‌ساز است.",
+                "ترس‌هایت را رها کن؛ در آن سوی ترس، آزادی و آرامش است.",
+                "جهان با تو هماهنگ است. به نشانه‌ها توجه کن، راهنمایت می‌کنند."
+            ],
+            talisman: [
+                "🔮 طلسم «چشم‌زخم»: از انرژی‌های منفی محافظت می‌کند. با خود همراه داشته باش، مخصوصاً وقتی خسته‌ای.",
+                "⚜️ طلسم «پنجه‌ی فاطمه»: برکت و پاکی می‌آورد. در ورودی خانه نصب کن تا انرژی مثبت وارد شود.",
+                "🌙 طلسم «هلال ماه»: برای جذب عشق و آرامش به کار می‌رود. شب‌ها زیر نور ماه قرار بده تا شارژ شود.",
+                "🔥 طلسم «آتش سپند»: با دود کردن اسپند، چشم‌زخم را دور کن و انرژی مثبت بیاور، سه‌شنبه‌ها.",
+                "💎 طلسم «یاقوت سرخ»: شجاعت و قدرت می‌بخشد. در جیب یا گردن آویز کن، مخصوصاً روزهای مهم.",
+                "🪷 طلسم «نیلوفر آبی»: آرامش روح و تعادل عاطفی. در آب روان قرار بده تا انرژی‌اش جاری شود.",
+                "🔯 طلسم «ستاره داوود»: محافظت قوی در برابر انرژی‌های منفی و حسادت."
+            ]
+        };
+
+        // توضیحات
+        const infoTexts = {
+            talisman: "🌀 طلسم‌های کهن: هر کدام انرژی خاصی دارند. برای محافظت، عشق، موفقیت و آرامش. با نیت خود انتخاب کن.",
+            dream: "🌙 تعبیر خواب کهن: خواب خود را بنویسید تا تعبیر دقیق آن را دریافت کنید. هر نماد معنای خاص خود را دارد.",
+            default: "✨ هر گزینه انرژی خاص خود را دارد. انتخاب کنید و نیت خود را مطرح کنید."
+        };
+
+        function updateInfo(type) {
+            let text = infoTexts.default;
+            let icon = 'fa-shield-alt';
+            if (type === 'talisman') {
+                text = infoTexts.talisman;
+                icon = 'fa-gem';
+            } else if (type === 'dream') {
+                text = infoTexts.dream;
+                icon = 'fa-cloud-moon';
+            }
+            $('#talismanDesc').text(text);
+            $('#talismanInfo i').removeClass().addClass(`fas ${icon}`);
+        }
+
+        // تابع تعبیر خواب هوشمند
+        function getDreamInterpretation(question) {
+            // بررسی تمام کلمات کلیدی
+            for (const [keyword, interpretations] of Object.entries(dreamInterpretation)) {
+                if (question.includes(keyword)) {
+                    return interpretations[Math.floor(Math.random() * interpretations.length)];
+                }
+            }
+            // اگر هیچ کلمه کلیدی پیدا نشد
+            const generalDreams = [
+                "تعبیر خواب: خوابی که دیدی نشانه تغییر و تحول در زندگی توست. به زودی اتفاق جدیدی رخ می‌دهد که تو را شگفت‌زده خواهد کرد.",
+                "خواب تو پیامی از ناخودآگاهت دارد. به احساساتت در خواب توجه کن، آنها کلید تعبیر هستند.",
+                "این خواب نشانه آن است که در مسیر درستی قرار داری. به شهود خود اعتماد کن و ادامه بده.",
+                "خواب‌ها آینه‌ی روح هستند. آنچه در خواب دیدی، نشانه‌ای از آرزوها و ترس‌های درون توست."
+            ];
+            return generalDreams[Math.floor(Math.random() * generalDreams.length)];
+        }
+
+        // انتخاب نوع
+        $('.type-btn').on('click', function() {
+            $('.type-btn').removeClass('active');
+            $(this).addClass('active');
+            currentType = $(this).data('type');
+            const typeName = $(this).text().trim();
+            $('#fortuneTypeLabel').text(typeName);
+            updateInfo(currentType);
+            $('#fortuneText').html('<i class="fas fa-crystal-ball"></i> نوع تغییر کرد. سوال یا خواب خود را مطرح کنید.');
+            $('#resultBox').css('border-right-color', '#f0d080');
+        });
+
+        // دکمه
+        $('#getFortuneBtn').on('click', function() {
+            const question = $('#questionInput').val().trim() || 'نیت خیر';
+            $('#loadingIndicator').css('display', 'flex');
+            $('#fortuneText').html('');
+
+            setTimeout(function() {
+                let answer = '';
+
+                // اگر نوع تعبیر خواب است
+                if (currentType === 'dream') {
+                    answer = getDreamInterpretation(question);
+                } else {
+                    // فال‌های معمول
+                    let pool = fortuneDB[currentType] || fortuneDB.hafez;
+                    answer = pool[Math.floor(Math.random() * pool.length)];
+
+                    // شخصی‌سازی برای فال‌های عادی
+                    const keywords = {
+                        'عشق': ['عشق', 'دوست', 'دل', 'مهربانی'],
+                        'شغل': ['شغل', 'کار', 'پول', 'موفقیت'],
+                        'خواب': ['خواب', 'رویا', 'دیدن'],
+                        'محافظت': ['محافظت', 'امنیت', 'دشمن', 'خطر'],
+                        'آرامش': ['آرامش', 'صلح', 'سکوت', 'مدیتیشن']
+                    };
+
+                    let found = false;
+                    for (const [key, words] of Object.entries(keywords)) {
+                        for (const w of words) {
+                            if (question.includes(w)) {
+                                const extra = [
+                                    `\n(توجه به «${w}» نشان از اهمیت این موضوع در زندگی تو دارد.)`,
+                                    `\n(انرژی «${w}» در پاسخ تو جاری است.)`,
+                                    `\n(پیام ویژه برای «${w}»: به آن اعتماد کن.)`
+                                ];
+                                answer = answer + extra[Math.floor(Math.random() * extra.length)];
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) break;
+                    }
+                }
+
+                // زمان
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+                $('#timeLabel').text(timeStr);
+
+                $('#fortuneText').html(`<i class="fas fa-quote-right" style="margin-left:14px;"></i> ${answer}`);
+                $('#resultBox').css('border-right-color', '#f0d080');
+                $('#loadingIndicator').css('display', 'none');
+
+                // افکت
+                $('#resultBox').css('transition', '0.2s');
+                $('#resultBox').css('background', 'rgba(240, 208, 128, 0.08)');
+                setTimeout(() => {
+                    $('#resultBox').css('background', 'rgba(0, 0, 0, 0.4)');
+                }, 400);
+
+            }, 900 + Math.random() * 700);
+        });
+
+        // اینتر
+        $('#questionInput').on('keypress', function(e) {
+            if (e.which === 13) $('#getFortuneBtn').click();
+        });
+
+        // مقداردهی
+        $('#fortuneTypeLabel').text('فال حافظ');
+        updateInfo('hafez');
+    });
+</script>
+</body>
+</html>
+```
